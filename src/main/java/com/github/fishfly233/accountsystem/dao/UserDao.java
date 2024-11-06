@@ -1,5 +1,6 @@
-package com.github.fishfly233.accountsystem;
+package com.github.fishfly233.accountsystem.dao;
 
+import com.github.fishfly233.accountsystem.datamodels.User;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;

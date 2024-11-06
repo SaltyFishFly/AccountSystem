@@ -1,4 +1,4 @@
-package com.github.fishfly233.accountsystem;
+package com.github.fishfly233.accountsystem.datamodels;
 
 import lombok.Data;
 

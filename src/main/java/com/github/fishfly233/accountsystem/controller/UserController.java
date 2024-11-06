@@ -1,13 +1,16 @@
 package com.github.fishfly233.accountsystem.controller;
-import com.github.fishfly233.accountsystem.User;
-import com.github.fishfly233.accountsystem.UserService;
+
+import com.github.fishfly233.accountsystem.datamodels.SimpleResponse;
+import com.github.fishfly233.accountsystem.datamodels.User;
+import com.github.fishfly233.accountsystem.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Data
-@RestController
+@Controller
 @RequestMapping("/user")
 public class UserController {
 
@@ -19,23 +22,24 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@RequestBody User user, HttpSession session) {
-        var val = userService.register(user);
-        if (val) {
-            return "User created successfully!";
+    public SimpleResponse register(@RequestBody User user, HttpSession session) {
+        var resp = new SimpleResponse();
+        var isSuccess = userService.register(user);
+        if (isSuccess) {
+            return SimpleResponse.ok();
         } else {
-            return "Error creating user.";
+            return SimpleResponse.error();
         }
     }
 
     @PostMapping("/login")
-    public String login(@RequestBody User user, HttpSession session) {
+    public SimpleResponse login(@RequestBody User user, HttpSession session) {
         var val = userService.login(user);
         if (val.isPresent()) {
-            session.setAttribute("uid", val.get());
-            return "Login successful!";
+            session.setAttribute("user", val.get());
+            return SimpleResponse.ok();
         } else {
-            return "Invalid username or password.";
+            return SimpleResponse.error();
         }
     }
 }

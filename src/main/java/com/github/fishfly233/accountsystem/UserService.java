@@ -1,24 +1,27 @@
 package com.github.fishfly233.accountsystem;
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Data
+@Service
 public class UserService {
 
-    JdbcTemplate jdbcTemplate;
+    private UserDao userDao;
 
     @Autowired
-    public UserService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
     }
 
-    public User register(String username, String password) {
-        return new User();
+    public boolean register(User user) {
+        return false;
     }
 
-    public User login(String username, String password) {
-        return new User();
+    public boolean login(User user) {
+        return false;
     }
 }

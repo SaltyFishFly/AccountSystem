@@ -9,11 +9,11 @@ public class DbInitializer {
 
     JdbcTemplate jdbcTemplate;
 
-    private static final String CREATE_ACCOUNT_TABLE =
+    private static final String CREATE_USERS_TABLE =
     """
-    CREATE TABLE IF NOT EXISTS ACCOUNT (
+    CREATE TABLE IF NOT EXISTS USERS (
         ID INTEGER PRIMARY KEY AUTO_INCREMENT,
-        NAME VARCHAR(255) NOT NULL,
+        NAME VARCHAR(255) NOT NULL UNIQUE,
         PASSWORD VARCHAR(255) NOT NULL
     );
     """;
@@ -22,6 +22,6 @@ public class DbInitializer {
     public DbInitializer(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
 
-        this.jdbcTemplate.execute(CREATE_ACCOUNT_TABLE);
+        this.jdbcTemplate.execute(CREATE_USERS_TABLE);
     }
 }

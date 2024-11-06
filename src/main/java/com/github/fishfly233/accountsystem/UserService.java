@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Data
 @Service
 public class UserService {
@@ -18,10 +20,10 @@ public class UserService {
     }
 
     public boolean register(User user) {
-        return false;
+        return userDao.addUser(user) != 0;
     }
 
-    public boolean login(User user) {
-        return false;
+    public Optional<User> login(User user) {
+        return userDao.getUserByUsername(user.getUsername());
     }
 }

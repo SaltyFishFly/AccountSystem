@@ -3,10 +3,12 @@
     --md-hover-color: #52049a;    /* 鼠标悬停时的颜色 */
     --md-focus-color: rgba(98, 0, 234, 0.4);  /* 聚焦时的颜色 */
     --md-text-color: white;       /* 文字颜色 */
-    --md-shadow-color: rgba(0, 0, 0, 0.1);    /* 阴影颜色 */
+    --md-shadow-color: rgba(0, 0, 0, 0.15);    /* 阴影颜色 */
     --md-shadow-dark: rgba(0, 0, 0, 0.24);    /* 深色阴影 */
     --md-shadow-light: rgba(0, 0, 0, 0.08);   /* 浅色阴影 */
     --md-border-color: #888888;
+
+    font-family: sans-serif;
 }
 
 div, label {
@@ -15,6 +17,14 @@ div, label {
 
 .block_element {
     display: block;
+    padding: 4px;
+}
+
+.card {
+    display: block;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px var(--md-shadow-color), 0 1px 3px var(--md-shadow-light);
+    padding: 8px;
 }
 
 .md_button {
@@ -30,7 +40,7 @@ div, label {
     border: none;  /* 去除边框 */
     cursor: pointer;  /* 鼠标悬浮时变为手指 */
     outline: none;  /* 去除焦点时的外边框 */
-    box-shadow: 0 4px 6px var(--md-shadow-color), 0 1px 3px var(--md-shadow-light);  /* 按钮的阴影 */
+    box-shadow: 0 4px 6px var(--md-shadow-color);  /* 按钮的阴影 */
     transition: all 0.3s ease;  /* 过渡效果 */
 }
 
@@ -39,12 +49,30 @@ div, label {
 }
 
 .md_button:active {
-    box-shadow: 0 1px 3px var(--md-shadow-dark), 0 1px 2px var(--md-shadow-light);  /* 按钮按下时的阴影效果 */
+    box-shadow: 0 8px 16px var(--md-shadow-dark);  /* 按钮按下时的阴影效果 */
     transform: translateY(2px);  /* 按钮按下时的下移效果 */
 }
 
 .md_input {
-    border: 2px transparent;
-    border-bottom-color: var(--md-border-color);
-    border-radius: 4px;
+    box-sizing: border-box;
+    display: block;
+    position: relative;
+    padding: 8px;
+    font-family: sans-serif;
+}
+
+.md_input input {
+    display: block;
+    padding-top: 24px;
+    border: none;
+    border-bottom: 2px solid var(--md-primary-color);
+    outline: none;
+    font-size: 14px;
+}
+
+.md_input label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
 }

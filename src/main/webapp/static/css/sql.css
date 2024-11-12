@@ -5,3 +5,9 @@ html, body {
     align-items: center;
     margin-top: 32px;
 }
+
+#sql_input {
+    width: 400px;
+    height: 300px;
+    font-family: "FiraCode Nerd Font Mono", "Consolas", monospace;
+}

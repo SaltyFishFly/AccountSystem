@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Data
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/api/user")
 public class UserController {
 
     private UserService userService;

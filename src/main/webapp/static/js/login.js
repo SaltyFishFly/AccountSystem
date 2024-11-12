@@ -15,7 +15,7 @@ async function register() {
     let data = await resp.json();
     if (data.code === 200) {
         alert("注册成功！")
-        location.reload();
+        location.replace("index");
     }
     else alert(`注册失败，错误信息： ${data.message}`);
 }
@@ -38,7 +38,7 @@ async function login() {
     let data = await resp.json();
     if (data.code === 200) {
         alert("登录成功！")
-        location.reload();
+        location.replace("/index")
     }
     else alert(`登录失败，错误信息： ${data.message}`);
 }

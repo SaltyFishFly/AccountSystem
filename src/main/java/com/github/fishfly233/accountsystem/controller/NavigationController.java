@@ -4,10 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class IndexController {
+public class NavigationController {
 
     @GetMapping("/index")
     public String indexResolver() {
         return "index";
+    }
+
+    @GetMapping("/login")
+    public String loginSolver() {
+        return "login";
     }
 }

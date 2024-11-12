@@ -25,7 +25,7 @@ public class UserDao {
     public int addUser(User user) {
         var sql =
         """
-        INSERT INTO USERS (NAME, PASSWORD)
+        INSERT INTO USERS (USERNAME, PASSWORD)
         VALUES (?, ?)
         """;
         return jdbcTemplate.update(sql, user.getUsername(), user.getPassword());
@@ -42,7 +42,7 @@ public class UserDao {
     public Optional<User> getUserByUsername(String name) {
         var sql =
         """
-        SELECT * FROM USERS WHERE NAME = ?
+        SELECT * FROM USERS WHERE USERNAME = ?
         """;
         var users = jdbcTemplate.query(sql, new Object[]{name}, new UserRowMapper());
         return users.isEmpty() ? Optional.empty() : Optional.of(users.getFirst());

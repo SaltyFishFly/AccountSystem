@@ -2,6 +2,8 @@ package com.github.fishfly233.accountsystem.controller;
 
 import com.github.fishfly233.accountsystem.datamodels.SimpleResponse;
 import com.github.fishfly233.accountsystem.datamodels.User;
+import com.github.fishfly233.accountsystem.exception.UserExistsException;
+import com.github.fishfly233.accountsystem.exception.UserNotExistsException;
 import com.github.fishfly233.accountsystem.service.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.Data;
@@ -22,24 +24,33 @@ public class UserController {
     }
 
     @PostMapping("/register")
+    @ResponseBody
     public SimpleResponse register(@RequestBody User user, HttpSession session) {
-        var resp = new SimpleResponse();
-        var isSuccess = userService.register(user);
-        if (isSuccess) {
+        try {
+            userService.register(user);
             return SimpleResponse.ok();
-        } else {
-            return SimpleResponse.error();
+        }
+        catch (UserExistsException e) {
+            return SimpleResponse.error("用户已经存在");
+        }
+        catch (Exception e) {
+            return SimpleResponse.error("未知内部错误");
         }
     }
 
     @PostMapping("/login")
+    @ResponseBody
     public SimpleResponse login(@RequestBody User user, HttpSession session) {
-        var val = userService.login(user);
-        if (val.isPresent()) {
-            session.setAttribute("user", val.get());
+        try {
+            var val = userService.login(user);
+            session.setAttribute("user", val);
             return SimpleResponse.ok();
-        } else {
-            return SimpleResponse.error();
+        }
+        catch (UserNotExistsException e) {
+            return SimpleResponse.error("用户不存在");
+        }
+        catch (Exception e) {
+            return SimpleResponse.error("未知内部错误");
         }
     }
 }

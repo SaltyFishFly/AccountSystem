@@ -16,11 +16,11 @@ public class SimpleResponse {
         return res;
     }
 
-    public static SimpleResponse error() {
+    public static SimpleResponse error(String msg) {
         var res = new SimpleResponse();
         res.setCode(500);
         res.setTimeStamp(System.currentTimeMillis());
-        res.setMessage("Internal Error");
+        res.setMessage(msg);
         return res;
     }
 }

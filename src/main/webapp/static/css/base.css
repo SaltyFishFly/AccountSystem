@@ -1,0 +1,50 @@
+:root {
+    --md-primary-color: #6210ba;  /* 主颜色（紫色） */
+    --md-hover-color: #52049a;    /* 鼠标悬停时的颜色 */
+    --md-focus-color: rgba(98, 0, 234, 0.4);  /* 聚焦时的颜色 */
+    --md-text-color: white;       /* 文字颜色 */
+    --md-shadow-color: rgba(0, 0, 0, 0.1);    /* 阴影颜色 */
+    --md-shadow-dark: rgba(0, 0, 0, 0.24);    /* 深色阴影 */
+    --md-shadow-light: rgba(0, 0, 0, 0.08);   /* 浅色阴影 */
+    --md-border-color: #888888;
+}
+
+div, label {
+    padding: 4px;
+}
+
+.block_element {
+    display: block;
+}
+
+.md_button {
+    position: relative;
+    display: inline-block;
+    padding: 8px 12px;  /* 按钮的内边距 */
+    font-size: 14px;  /* 字体大小 */
+    text-align: center;
+    text-decoration: none;
+    border-radius: 4px;  /* 圆角效果 */
+    background-color: var(--md-primary-color);  /* 使用主颜色 */
+    color: var(--md-text-color);  /* 文字颜色 */
+    border: none;  /* 去除边框 */
+    cursor: pointer;  /* 鼠标悬浮时变为手指 */
+    outline: none;  /* 去除焦点时的外边框 */
+    box-shadow: 0 4px 6px var(--md-shadow-color), 0 1px 3px var(--md-shadow-light);  /* 按钮的阴影 */
+    transition: all 0.3s ease;  /* 过渡效果 */
+}
+
+.md_button:hover {
+    background-color: var(--md-hover-color);  /* 鼠标悬停时的背景颜色 */
+}
+
+.md_button:active {
+    box-shadow: 0 1px 3px var(--md-shadow-dark), 0 1px 2px var(--md-shadow-light);  /* 按钮按下时的阴影效果 */
+    transform: translateY(2px);  /* 按钮按下时的下移效果 */
+}
+
+.md_input {
+    border: 2px transparent;
+    border-bottom-color: var(--md-border-color);
+    border-radius: 4px;
+}

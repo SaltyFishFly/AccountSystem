@@ -2,6 +2,8 @@ package com.github.fishfly233.accountsystem.service;
 
 import com.github.fishfly233.accountsystem.dao.UserDao;
 import com.github.fishfly233.accountsystem.datamodels.User;
+import com.github.fishfly233.accountsystem.exception.UserExistsException;
+import com.github.fishfly233.accountsystem.exception.UserNotExistsException;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,11 +21,15 @@ public class UserService {
         this.userDao = userDao;
     }
 
-    public boolean register(User user) {
-        return userDao.addUser(user) != 0;
+    public void register(User user) throws UserExistsException {
+        var record = userDao.getUserByUsername(user.getUsername());
+        if (record.isEmpty()) userDao.addUser(user);
+        else throw new UserExistsException();
     }
 
-    public Optional<User> login(User user) {
-        return userDao.getUserByUsername(user.getUsername());
+    public User login(User user) throws UserNotExistsException {
+        var record = userDao.getUserByUsername(user.getUsername());
+        if (record.isEmpty()) throw new UserNotExistsException();
+        return record.get();
     }
 }
